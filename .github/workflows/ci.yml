@@ -11,6 +11,5 @@ jobs:
     uses: OnYyon/oregon-ci-templates/.github/workflows/lint-python.yml@main
     with:
       python-version: "3.14"
-      test-command: "pytest"
       test-path: "./tests"
       coverage-threshold: 80
