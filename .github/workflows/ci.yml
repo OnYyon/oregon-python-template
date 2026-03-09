@@ -31,7 +31,7 @@ jobs:
     if: github.event_name == 'pull_request'
     permissions:
       contents: read
-      packages: read
+      packages: write
     uses: OnYyon/oregon-ci-templates/.github/workflows/docker-push.yml@main
     secrets: inherit
     with:
