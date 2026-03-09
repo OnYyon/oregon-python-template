@@ -17,15 +17,23 @@ jobs:
   docker-push:
     needs: python-ci
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
     uses: OnYyon/oregon-ci-templates/.github/workflows/docker-push.yml@main
+    secrets: inherit
     with:
       push_to_registry: true
       platforms: "linux/amd64"
 
   docker-build:
     needs: python-ci
-    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      packages: read
     uses: OnYyon/oregon-ci-templates/.github/workflows/docker-push.yml@main
+    secrets: inherit
     with:
       push_to_registry: false
       platforms: "linux/amd64"
