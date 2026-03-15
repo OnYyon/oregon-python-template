@@ -3,13 +3,14 @@ name: Python CI
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 jobs:
   python-ci:
-    uses: OnYyon/oregon-ci-templates/.github/workflows/lint-python.yml@main
+    uses: Oregon-MAI/oregon-ci-templates/.github/workflows/lint-python.yml@main
     with:
       python-version: "3.14"
       test-path: "./tests"
@@ -21,7 +22,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: OnYyon/oregon-ci-templates/.github/workflows/docker-push.yml@main
+    uses: Oregon-MAI/oregon-ci-templates/.github/workflows/docker-push.yml@main
     secrets: inherit
     with:
       push_to_registry: true
@@ -33,7 +34,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: OnYyon/oregon-ci-templates/.github/workflows/docker-push.yml@main
+    uses: Oregon-MAI/oregon-ci-templates/.github/workflows/docker-push.yml@main
     secrets: inherit
     with:
       push_to_registry: false
